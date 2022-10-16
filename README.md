@@ -5,11 +5,9 @@
 > Anon developer inspired to deliver asymmetric societal change through technology.
 > 
 
-![noun-concentric-circles-4557081](https://user-images.githubusercontent.com/114296700/196034612-92e0f74f-e58f-44d4-b3b1-dc381f9b297b.png)
+![noun-concentric-circles-4557081 copy](https://user-images.githubusercontent.com/114296700/196034705-c8aab470-95b4-49e9-b091-eb887d919209.png)
 
 ## My interests include:
-
-(Click on the toggles to learn more)
 
 - 🎓 **Learning**
     
