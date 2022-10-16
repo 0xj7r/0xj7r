@@ -1,9 +1,16 @@
 # 0xj7r
 
 > Anon developer inspired to deliver asymmetric societal change through technology.
-> 
 
-## My interests include:
+- 🔭 I’m currently working on a web-app to eliminate distraction from networking tools
+- 🌱 I’m currently learning React and other front-end web JavaScript web frameworks
+- 🍒 I’m looking to collaborate on Front-End projects
+- 🤔 I’m looking for help with improving my React coding proficiency 
+- 🕶 How to reach me: Twitter [@0xj7r](https://twitter.com/0xj7r)
+
+##
+
+**My interests include:**
 
 - 🎓 **Learning**
     
@@ -29,7 +36,7 @@
     
 - 🏃‍♂️ **Sports**
     
-    Scaling up my efforts in endurance sports. Recently completed my first half marathon ([Hackney Half Marathon](https://run.limelightsports.club/event/hackney-moves-2022/hackney-half)) in 1hr 44 mins (4:50 min/km pace). Eventually aiming to complete an ultra-marathon (50+ km) 
+    Scaling up my efforts in endurance sports. Recently completed my first half marathon in 1hr 44 mins (4:50 min/km pace). Eventually aiming to complete an ultra-marathon (50+ km) 
     
 - ♠️ **Poker**
     
@@ -47,18 +54,3 @@
 - ☕️ **Coffee**
     
     The elixir of life
-
-
-## And I’d like to do more:
-
-- 🙆 **Stretching**
-    
-    Trying (and failing) to implement a more robust stretching protocol to complement my endurance training
-    
-- 🔐 **Blockchain Analytics**
-    
-    Querying of on-chain data on Dune Analytics 
-    
-- 💰 **Investing**
-    
-    Interested to learn more about the fundamentals of investing - perhaps one for retirement when I am out of the startup scene
