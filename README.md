@@ -1,11 +1,7 @@
 # 0xj7r
 
-
-
 > Anon developer inspired to deliver asymmetric societal change through technology.
 > 
-
-![noun-concentric-circles-4557081 copy](https://user-images.githubusercontent.com/114296700/196034705-c8aab470-95b4-49e9-b091-eb887d919209.png)
 
 ## My interests include:
 
