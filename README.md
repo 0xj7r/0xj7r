@@ -1,6 +1,6 @@
 # 0xj7r
 
-> Anon developer inspired to deliver asymmetric societal change through technology.
+> Anon developer inspired to deliver asymmetric societal change through technology 🚀
 
 - 🔭 I’m currently working on a web-app to eliminate distraction from networking tools
 - 🌱 I’m currently learning React and other front-end web JavaScript web frameworks
