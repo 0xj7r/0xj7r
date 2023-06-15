@@ -4,4 +4,3 @@
 
 - 🔭 I’m currently working at Coral, a seed-stage start-up backed by Accel. In stealth 🥷.
 - 🌱 I’m currently learning about Transformer architecture and AutoGPT applications
-- 🤔 I’m looking for help with improving my ML understanding of ML 
