@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
 
 class AssetExtraction:
     """
@@ -19,7 +20,6 @@ class AssetExtraction:
         """
         Initialize the ImageSummaryGenerator with an OpenAI client and a requests session.
         """
-        self.client = OpenAI()
         self.session = requests.Session()
 
     def generate_summary(self):
@@ -31,22 +31,7 @@ class AssetExtraction:
 
     def _parse_response(self, response: Dict) -> Dict:
         """Parses model output response to conform to Pydantic class."""
-        return self.pydantic_parser.parse(response.choices[0].message.content)
-
-    def _return_tokens(self, response: Dict) -> Dict:
-        """Estimates inference cost assuming gpt-4 (4K context)."""
-        i_tokens = response.usage.prompt_tokens
-        o_tokens = response.usage.completion_tokens
-
-        i_cost = (i_tokens / 1000) * 0.001
-        o_cost = (o_tokens / 1000) * 0.003
-
-        # TODO: add image scaling token costs
-        return {
-            "prompt_tokens": i_tokens,
-            "completion_tokens": o_tokens,
-            "estimated_io_cost": f"${round(i_cost + o_cost, 5)}",
-        }
+        return self.pydantic_parser.parse(response.content[0])   
 
     def _run(self, url: str) -> Dict:
         """Executes main text extraction methods."""
