@@ -1,54 +1,70 @@
-import os 
-import logging 
+import os
+import logging
 import uuid
 from dotenv import load_dotenv
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.WARNING)
 
 load_dotenv()
 
-class WorkflowStep:
-    def __init__(self, expected_input, expected_output, command=None, args=None):
-        if command and not callable(command):
-            raise TypeError("command must be a function")
-
-        if args and not isinstance(args, dict):
-            raise TypeError("args must be a dictionary")
-
-        self.expected_input = expected_input
-        self.expected_output = expected_output
-        self.command = command
-        self.args = args if args else {}
-
 
 class Workflows:
+    """This class provides a structure for creating a workflow of tasks."""
+
     def __init__(self):
-        self.workflow = []
+        """Constructor method initializes an empty list of steps."""
+        self.steps = []
 
-    def add_step(self, step):
-        if not isinstance(step, WorkflowStep):
-            raise TypeError("step must be an instance of WorkflowStep")
+    def add_step(self, func, condition=lambda x: True, depends_on=None):
+        """
+        This method adds a step to the workflow.
 
-        self.workflow.append(step)
+        :param func: the function to be added as a step.
+        :param condition: a function that takes one argument and returns a boolean. If True, the step is executed.
+        :param depends_on: a list of function names that this step depends on.
+        """
+        self.steps.append((func, condition, depends_on or []))
+        logging.info(f"A new step was added: {func.__name__}")
 
-    def run(self):
-        results = []
-        for i, step in enumerate(self.workflow):
-            print(f"Running step {i+1} with command {step.command} and args {step.args}")
-            if step.command:
-                try:
-                    result = step.command(step.expected_input, **step.args)
-                    if result != step.expected_output:
-                        print(f"Step {i+1} failed. Expected output {step.expected_output}, got {result}")
-                        results.append((False, result))
-                    else:
-                        print(f"Step {i+1} passed.")
-                        results.append((True, result))
-                except Exception as e:
-                    print(f"Step {i+1} failed with error: {e}")
-                    results.append((False, str(e)))
+    def reorder_step(self, step_name, new_idx):
+        """
+        This method reorders a step in the workflow.
 
-        return results
+        :param step_name: name of the step (function) to be reordered.
+        :param new_idx: the new index position for the step in workflow.
+        """
+        for idx, (func, cond, depends_on) in enumerate(self.steps):
+            if func.__name__ == step_name:
+                self.steps.insert(new_idx, self.steps.pop(idx))
+                logging.info(f"Step {func.__name__} reordered.")
+                break
+
+    def run(self, input):
+        """
+        This method executes the workflow and returns an output.
+
+        :param input: initial input for the workflow.
+        """
+        output = input
+        executed = []
+        for step, condition, depends_on in self.steps:
+            if all(dep in executed for dep in depends_on):
+                if condition(output):
+                    try:
+                        output = step(output)
+                        logging.info(f"Step {step.__name__} executed.")
+                        executed.append(step.__name__)
+                    except Exception as e:
+                        logging.error(f"Error executing step {step.__name__}: {e}")
+                else:
+                    logging.info(f"Step {step.__name__} was skipped.")
+            else:
+                logging.warning(
+                    f"Step {step.__name__} was skipped due to unmet dependencies."
+                )
+        return output
+
+
 # ```
 
 #  You might use the class like this:
@@ -56,7 +72,7 @@ class Workflows:
 # ```python
 # def dummy_function(inp, mul=1, add=0):
 #     return inp * mul + add
-   
+
 # workflow = Workflows()
 # step1 = WorkflowStep(1, 2, dummy_function, {'mul': 2, 'add': -1})
 # workflow.add_step(step1)
@@ -79,5 +95,3 @@ class Workflows:
 # ```
 # [(True, 2), (True, 6)]
 # ```
-
-        
